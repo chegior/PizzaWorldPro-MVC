@@ -15,17 +15,17 @@ namespace PizzaWorldPro.Domain.Abstracts
         public List<Toppings> PizzaToppings{get; set;}
 
         protected APizzaModel()
-        { 
+        {
             AddName();
             AddPizzaPrice();
             AddToppings();
         }
 
-        public virtual void CalculatePrice(){}
+        public virtual void CalculatePrice(double item){}
         protected virtual void AddName(){}
         protected virtual void AddPizzaPrice(){}
         protected virtual void AddToppings(){}
-        
-        
+
+
     }
 }

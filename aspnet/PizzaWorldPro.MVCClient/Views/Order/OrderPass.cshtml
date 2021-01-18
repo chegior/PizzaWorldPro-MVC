@@ -1,0 +1,13 @@
+@model PizzaWorldPro.MVCClient.Models.OrderViewModel;
+
+<h2>Your Order:</h2>
+<p><strong>Store:</strong>@Model.StoreSelected</p>
+<p><strong>Pizza :</strong>@Model.PizzasSelected</p>
+<p><strong>Crust:</strong>@Model.CrustSelected</p>
+<p><strong>Size:</strong>@Model.SizeSelected</p>
+<h5>Your Toppings:</h5>
+ @foreach (var item in Model.Toppings)
+    {
+      <ol>@item</ol>
+    }
+<h4>Pizza Price: $@Model.PizzaPrice</h4>

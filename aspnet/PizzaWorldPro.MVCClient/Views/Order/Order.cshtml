@@ -1,8 +1,8 @@
 @model PizzaWorldPro.MVCClient.Models.OrderViewModel;
 @{
   ViewBag.Title = "Order";
-
 }
+
 <div class="container">
 <form class="form-group" asp-action="post" asp-controller="order" asp-antiforgery="true" method="POST">
 
@@ -12,7 +12,7 @@
     @foreach (var item in Model.Stores)
     {
       <div class="form-group form-check">
-      <input type="radio" asp-for="@Model.Stores" value="@item">
+      <input name="StoreSelection" type="radio" asp-for="@Model.Stores" value="@item">
       <label for="@item">@item</label>
       </div>
     }
@@ -23,35 +23,42 @@
     {
       <div class="form-group">
         <div class="form-check">
-          <input type="radio" asp-for="@Model.Pizzas" value="@item" id="Pizzas" asp-action="showOption()">
+          <input name="PizzaSelection" type="radio" asp-for="@Model.Pizzas" value="@item" id="Pizzas" asp-action="showOption()">
           <label for="@item"><strong>@item</strong></label>
         </div>
 
         <div class="PizzasMenu" id="PizzasMenu">
-        <div>
-          <label asp-for="@Model.Size">Select your Size:</label>
+            @* @Html.Partial("Pizza",Model) *@
+
+          <div>
+            <label asp-for="@Model.Size">Select your Size:</label>
             @foreach (var size in Model.Size)
             {
               <div class="form-check">
 
-              <input type="radio" asp-for="@Model.Size" value="@size">
+              <input name="SizeSelection" type="radio" asp-for="@Model.Size" value="@size">
               <label for="@size">@size</label>
               </div>
             }
           </div>
+
           <div>
             <label asp-for="@Model.Crust">Select your Crust:</label>
             @foreach (var crust in Model.Crust)
             {
               <div class="form-check">
 
-              <input type="radio" asp-for="@Model.Crust" value="@crust">
+              <input name="CrustSelection" type="radio" asp-for="@Model.Crust" value="@crust">
               <label for="@crust">@crust</label>
               </div>
             }
           </div>
-           <button class="btn btn-info" type="button">Make this Pizza</button>
-          </div>
+
+
+
+        </div>
+
+
 
       </div>
     }

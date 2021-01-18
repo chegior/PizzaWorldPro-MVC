@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PizzaWorldPro.Domain.Models{
     public class PizzaMeat :APizzaModel
-    {   
+    {
         protected override void AddToppings()
         {
             PizzaToppings = new List<Toppings>{};
@@ -18,6 +18,10 @@ namespace PizzaWorldPro.Domain.Models{
         {
              PizzaPrice = 15.00;
         }
+         public override void CalculatePrice(double T)
+       {
+           PizzaPrice += Crust.ItemPrice + Size.ItemPrice + T;
+       }
 
     }
 }

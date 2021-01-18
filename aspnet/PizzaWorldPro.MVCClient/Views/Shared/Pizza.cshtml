@@ -1,0 +1,31 @@
+@model PizzaWorldPro.MVCClient.Models.OrderViewModel
+@{
+  ViewBag.Title = "Pizza";
+  var pizza = new PizzaViewModel();
+}
+
+<div>
+  <label asp-for="@Model.Size">Select your Size:</label>
+  @foreach (var size in Model.Size)
+  {
+    <div class="form-check">
+
+    <input type="radio" asp-for="@Model.Size" value="@size">
+    <label for="@size">@size</label>
+    </div>
+  }
+</div>
+
+<div>
+  <label asp-for="@Model.Crust">Select your Crust:</label>
+  @foreach (var crust in Model.Crust)
+  {
+    <div class="form-check">
+
+    <input type="radio" asp-for="@Model.Crust" value="@crust">
+    <label for="@crust">@crust</label>
+    </div>
+  }
+</div>
+
+<button class="btn btn-info" type="button">Add me</button>

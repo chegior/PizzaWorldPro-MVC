@@ -17,6 +17,10 @@ namespace PizzaWorldPro.Domain.Models{
         {
              PizzaPrice = 25.00;
         }
-       
+         public override void CalculatePrice(double T)
+       {
+           PizzaPrice += Crust.ItemPrice + Size.ItemPrice + T;
+       }
+
     }
 }
