@@ -63,29 +63,6 @@ namespace PizzaWorldPro.Domain.Models
             var tp = T.Sum( x => x.ItemPrice);
             Pizzas.Last().CalculatePrice(tp);
         }
-        public void AssemblePizza()
-        {
-            ChooseASize();
-            ChooseACrust();
-
-        }
-        public void SetToppings(APizzaModel Pizza){
-            switch (Pizza.GetType().ToString())
-            {
-                case "PizzaWorldPro.Domain.Models.PizzaMeat":Console.WriteLine("You Made a Pizza Meat");break;
-                case "PizzaWorldPro.Domain.Models.PizzaVeggie":Console.WriteLine("You Made a Veggie Meat");break;
-                case "PizzaWorldPro.Domain.Models.PizzaHawaiian":Console.WriteLine("You Made a Hawaiian Meat");break;
-                case "PizzaWorldPro.Domain.Models.PizzaSupreme":Console.WriteLine("You Made a Supreme Meat");break;
-                default: break;
-            }
-        }
-        public void ChooseASize(){}
-        public void ChooseACrust(){}
-
-        public string Test()
-        {
-          return "it works";
-        }
 
     }
 }

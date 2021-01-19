@@ -4,8 +4,9 @@
 }
 
 <div class="container">
-<form class="form-group" asp-action="post" asp-controller="order" asp-antiforgery="true" method="POST">
 
+<form class="form-group" asp-action="post" asp-controller="order" asp-antiforgery="true" method="POST">
+  <h2 name="title">Welcome @Model.UserName</h2>
   <div class="form-group">
     <label asp-for="@Model.Stores">Choose a Negozio:</label>
 
@@ -63,7 +64,7 @@
       </div>
     }
   </div>
-  <button class="btn btn-primary" type="submit">place order</button>
+  <button class="btn btn-primary" type="submit" >place order</button>
 </form>
 
 </div>

@@ -5,9 +5,8 @@ namespace PizzaWorldPro.Domain.Models
 {
     public class User : AEntity
     {
-        public int Name { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
+        public string NameUser { get; set; }
+        public bool IsAnEmployee { get; set; }
         public List<Order> Orders { get; set; }
         public Store SelectedStore { get; set; }
 

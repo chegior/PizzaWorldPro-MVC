@@ -14,6 +14,26 @@ namespace PizzaWorldPro.Storing
       _ctx = context;
     }
 
+    public void AddUser(User user)
+    {
+      _ctx.Users.Add(user);
+      _ctx.SaveChanges();
+    }
+
+    public void AddOrder(Order order)
+    {
+      _ctx.Orders.Add(order);
+      _ctx.SaveChanges();
+    }
+
+    public User GetUser(string Name)
+    {
+      return _ctx.Users.FirstOrDefault(s => s.NameUser == Name);
+    }
+    public Store GetAStore(string Name)
+    {
+      return _ctx.Stores.FirstOrDefault(s => s.Name == Name);
+    }
     public List<string> GetStores()
     {
       return _ctx.Stores.Select(s => s.Name).ToList();
@@ -78,6 +98,11 @@ namespace PizzaWorldPro.Storing
     public Toppings getToppings(string name)
     {
         return _ctx.Toppings.FirstOrDefault(t => t.ItemName == name);
+    }
+
+    public void Update()
+    {
+            _ctx.SaveChanges();
     }
   }
 }

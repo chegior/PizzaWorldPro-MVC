@@ -18,22 +18,23 @@ namespace PizzaWorldPro.MVCClient.Controllers
       _ctx = context;
     }
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult Get(OrderViewModel model)
     {
-      var model = new OrderViewModel();
-
       model.Stores = _ctx.GetStores();
       model.Crust = _ctx.GetCrust();
       model.Size = _ctx.GetSize();
       return View("Order",model);
     }
     [HttpPost]
-    public IActionResult Post(IFormCollection Orderform)
+    public IActionResult Post(IFormCollection Orderform,OrderViewModel model)
     {
-      OrderViewModel model = new OrderViewModel();
+
+      var user = new User();
       var order = new Order();
+      var store = new Store();
 
       model.StoreSelected = Orderform["StoreSelection"];
+      store = _ctx.GetAStore(model.StoreSelected.ToString());
       model.PizzasSelected = Orderform["PizzaSelection"];
       model.SizeSelected = Orderform["SizeSelection"];
       model.CrustSelected = Orderform["CrustSelection"];
@@ -48,15 +49,14 @@ namespace PizzaWorldPro.MVCClient.Controllers
       order.Pizzas.Last().PizzaToppings.ForEach( s => model.Toppings.Add(s.ItemName.ToString()));
       model.PizzaPrice = order.Pizzas.Last().PizzaPrice;
 
+
+      store.Orders.Add(order);
+      _ctx.AddOrder(order);
+
+
       return View("OrderPass",model);
     }
 
-    // public string CreatePizzaList(OrderViewModel model )
-    // {
-    //   string v = model.Crust.ToString();
-    //   return v;
-
-    // }
 
 
 
