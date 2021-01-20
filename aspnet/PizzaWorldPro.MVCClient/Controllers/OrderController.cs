@@ -54,6 +54,7 @@ namespace PizzaWorldPro.MVCClient.Controllers
       order.Pizzas.Last().PizzaToppings.ForEach( s => model.Toppings.Add(s.ItemName.ToString()));
       model.PizzaPrice = order.Pizzas.Last().PizzaPrice;
       user.SelectedStore = store;
+      order.OrderPrice = order.Pizzas.Sum(p => p.PizzaPrice);
       user.Orders.Add(order);
       store.Orders.Add(order);
       _ctx.AddOrder(order);

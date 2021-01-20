@@ -9,6 +9,16 @@ body{
   color:white;
 }
 
+.hidden-link
+{
+  text-decoration: none;
+  color:inherit;
+}
+a.hidden-link:hover{
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;

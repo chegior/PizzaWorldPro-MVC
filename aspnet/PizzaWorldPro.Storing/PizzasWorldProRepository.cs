@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PizzaWorldPro.Domain.Abstracts;
 using PizzaWorldPro.Domain.Models;
 
@@ -37,6 +38,10 @@ namespace PizzaWorldPro.Storing
     public List<string> GetStores()
     {
       return _ctx.Stores.Select(s => s.Name).ToList();
+    }
+    public IEnumerable<Store> GetStoresObjects()
+    {
+      return _ctx.Stores.ToList();
     }
     public List<string> GetCrust()
     {
@@ -98,6 +103,14 @@ namespace PizzaWorldPro.Storing
     public Toppings getToppings(string name)
     {
         return _ctx.Toppings.FirstOrDefault(t => t.ItemName == name);
+    }
+
+    public Store getOrdersByStore(string n)
+    {
+        var s = _ctx.Stores
+            .Include(s=> s.Orders)
+            .FirstOrDefault(s => s.Name == n);
+        return s;
     }
 
     public void Update()

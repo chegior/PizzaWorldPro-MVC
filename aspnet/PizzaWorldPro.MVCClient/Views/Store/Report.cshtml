@@ -1,0 +1,16 @@
+@model PizzaWorldPro.MVCClient.Models.StoreViewModel;
+@{
+
+}
+<h2>This is @Model.StoreName</h2>
+
+<p>The List of Items</p>
+@foreach (var item in Model.StoreObj.Orders)
+{
+    <p>@item.OrderTime the price was @item.OrderPrice</p>
+    @foreach(var piz in @item.Pizzas)
+    {
+      <li>piz.PizzaPrice</li>
+    }
+}
+<button class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Store")'">Go Back</button>

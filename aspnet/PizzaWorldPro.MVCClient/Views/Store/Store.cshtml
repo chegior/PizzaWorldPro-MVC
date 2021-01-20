@@ -1,0 +1,22 @@
+@model PizzaWorldPro.MVCClient.Models.StoreViewModel;
+@{
+
+}
+<form class="form-group" asp-action="post" asp-controller="store" asp-antiforgery="true" method="POST">
+
+  <h3>Select the Store</h3>
+  <div class="form-group col-6">
+    <select class="form-control" name="listbox" id="listbox" asp-for="StoreName">
+      <br>
+      @foreach (var item in Model.StoreListString)
+      {
+        <option value="@item">
+          @item
+        </option>
+      }
+    </select>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Run Report</button>
+  </div>
+</form>
