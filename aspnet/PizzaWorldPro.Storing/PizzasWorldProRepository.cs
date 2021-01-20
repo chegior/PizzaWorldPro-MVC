@@ -102,7 +102,7 @@ namespace PizzaWorldPro.Storing
 
     public void Update()
     {
-            _ctx.SaveChanges();
+        _ctx.SaveChanges();
     }
   }
 }

@@ -16,9 +16,12 @@ namespace PizzaWorldPro.MVCClient.Controllers
     {
         private readonly ILogger<HomeController> _logger;
          private readonly PizzaWorldProRepository _ctx;
+
+
         public HomeController(PizzaWorldProRepository context)
         {
           _ctx = context;
+
         }
 
 
@@ -34,22 +37,21 @@ namespace PizzaWorldPro.MVCClient.Controllers
 
         public IActionResult SaveUser(IFormCollection form)
         {
-
+          string temp = form["UserName"];
           var model = new OrderViewModel();
-          var user = new User();
-
-          user.NameUser = form["UserNew"].ToString();
-          user = _ctx.GetUser(user.NameUser.ToString());
-          if(user == null)
+          var MyUser =new User();
+          MyUser.NameUser = form["UserName"];
+          MyUser = _ctx.GetUser(MyUser.NameUser.ToString());
+          if(MyUser == null)
           {
             var user1 = new User();
-            user1.NameUser = form["UserNew"].ToString();
+            user1.NameUser = temp;
             _ctx.AddUser(user1);
             model.UserName = user1.NameUser.ToString();
-            return RedirectToAction("order",model);
+            return RedirectToAction("Get","order",model);
           }
 
-          model.UserName = user.NameUser.ToString();
+          model.UserName = MyUser.NameUser.ToString();
           return RedirectToAction("Get","order",model);
         }
 

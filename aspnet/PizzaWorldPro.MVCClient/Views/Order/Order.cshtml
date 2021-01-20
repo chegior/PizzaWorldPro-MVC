@@ -1,12 +1,14 @@
 @model PizzaWorldPro.MVCClient.Models.OrderViewModel;
 @{
   ViewBag.Title = "Order";
+
 }
 
 <div class="container">
 
 <form class="form-group" asp-action="post" asp-controller="order" asp-antiforgery="true" method="POST">
-  <h2 name="title">Welcome @Model.UserName</h2>
+  <h2 name="title">@ViewBag.message <strong>@Model.UserName</strong></h2>
+  <input type="hidden" asp-for="@Model.UserName">
   <div class="form-group">
     <label asp-for="@Model.Stores">Choose a Negozio:</label>
 

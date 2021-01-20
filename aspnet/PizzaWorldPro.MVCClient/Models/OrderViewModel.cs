@@ -23,9 +23,11 @@ namespace PizzaWorldPro.MVCClient.Models
     public List<string> Toppings { get; set; }
 
 
+
     public OrderViewModel(){
       Pizzas = new List<string> {"Hawaiian","Meat","Supreme","Veggie"};
       Toppings = new List<string>{};
+
     }
 
 

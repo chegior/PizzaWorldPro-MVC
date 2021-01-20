@@ -13,13 +13,17 @@ namespace PizzaWorldPro.MVCClient.Controllers
   public class OrderController:Controller
   {
     private readonly PizzaWorldProRepository _ctx;
+    [BindProperty]
+    public User MyUser { get; set; }
     public OrderController(PizzaWorldProRepository context)
     {
       _ctx = context;
+      MyUser = new User();
     }
     [HttpGet]
     public IActionResult Get(OrderViewModel model)
     {
+      MyUser.NameUser = model.UserName;
       model.Stores = _ctx.GetStores();
       model.Crust = _ctx.GetCrust();
       model.Size = _ctx.GetSize();
@@ -30,11 +34,12 @@ namespace PizzaWorldPro.MVCClient.Controllers
     {
 
       var user = new User();
+      user.NameUser = Orderform["UserName"];
       var order = new Order();
       var store = new Store();
-
+      user = _ctx.GetUser(user.NameUser);
       model.StoreSelected = Orderform["StoreSelection"];
-      store = _ctx.GetAStore(model.StoreSelected.ToString());
+      store  = _ctx.GetAStore(Orderform["StoreSelection"].ToString());
       model.PizzasSelected = Orderform["PizzaSelection"];
       model.SizeSelected = Orderform["SizeSelection"];
       model.CrustSelected = Orderform["CrustSelection"];
@@ -48,8 +53,8 @@ namespace PizzaWorldPro.MVCClient.Controllers
 
       order.Pizzas.Last().PizzaToppings.ForEach( s => model.Toppings.Add(s.ItemName.ToString()));
       model.PizzaPrice = order.Pizzas.Last().PizzaPrice;
-
-
+      user.SelectedStore = store;
+      user.Orders.Add(order);
       store.Orders.Add(order);
       _ctx.AddOrder(order);
 
