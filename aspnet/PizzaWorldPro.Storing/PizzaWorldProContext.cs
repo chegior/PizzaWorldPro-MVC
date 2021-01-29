@@ -18,7 +18,7 @@ namespace PizzaWorldPro.Storing
         public PizzaWorldProContext(DbContextOptions<PizzaWorldProContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer("Server=chepizzaworld.database.windows.net; Initial Catalog=PizzaWorldProDB;User Id=sqladmin;Password=123QWEasd");
+            builder.UseSqlServer("Server=HHHHHH.database.windows.net; Initial Catalog=PizzaWorldProDB;User Id=SSSSS;Password=PPPPPPPP");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
